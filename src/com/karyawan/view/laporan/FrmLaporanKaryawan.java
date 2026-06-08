@@ -54,7 +54,7 @@ public class FrmLaporanKaryawan extends javax.swing.JPanel {
         return params;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlFilter = new javax.swing.JPanel();
@@ -143,9 +143,9 @@ public class FrmLaporanKaryawan extends javax.swing.JPanel {
                 .addComponent(scrollPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addContainerGap())
         );
-    }// </editor-fold>
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTampilkanActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnTampilkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilkanActionPerformed
         Map<String, Object> p = buildParams();
         StringBuilder sql = new StringBuilder(
             "SELECT k.nik, k.nama, k.jenis_kelamin, j.nama_jabatan, k.tanggal_masuk, k.status, k.no_telp "
@@ -168,13 +168,13 @@ public class FrmLaporanKaryawan extends javax.swing.JPanel {
                 "Gagal memuat preview: " + ex.getMessage(),
                 "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }//GEN-LAST:event_btnTampilkanActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         JasperHelper.exportPdf(RESOURCE, buildParams(), this);
-    }
+    }//GEN-LAST:event_btnExportActionPerformed
 
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnTampilkan;
     private javax.swing.JComboBox<String> cmbJabatan;
@@ -185,5 +185,5 @@ public class FrmLaporanKaryawan extends javax.swing.JPanel {
     private javax.swing.JPanel pnlFilter;
     private javax.swing.JScrollPane scrollPreview;
     private javax.swing.JTable tblPreview;
-    // End of variables declaration
+    // End of variables declaration//GEN-END:variables
 }

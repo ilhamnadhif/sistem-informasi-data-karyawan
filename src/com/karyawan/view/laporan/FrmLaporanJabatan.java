@@ -23,7 +23,7 @@ public class FrmLaporanJabatan extends javax.swing.JPanel {
         return new HashMap<String, Object>();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlButton = new javax.swing.JPanel();
@@ -77,9 +77,9 @@ public class FrmLaporanJabatan extends javax.swing.JPanel {
                 .addComponent(scrollPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addContainerGap())
         );
-    }// </editor-fold>
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTampilkanActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnTampilkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilkanActionPerformed
         String sql =
             "SELECT j.kode_jabatan, j.nama_jabatan, j.gaji_pokok, "
           + "COUNT(k.id_karyawan) AS jumlah_karyawan, j.keterangan "
@@ -94,18 +94,18 @@ public class FrmLaporanJabatan extends javax.swing.JPanel {
                 "Gagal memuat preview: " + ex.getMessage(),
                 "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }//GEN-LAST:event_btnTampilkanActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         JasperHelper.exportPdf(RESOURCE, buildParams(), this);
-    }
+    }//GEN-LAST:event_btnExportActionPerformed
 
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnTampilkan;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JPanel pnlButton;
     private javax.swing.JScrollPane scrollPreview;
     private javax.swing.JTable tblPreview;
-    // End of variables declaration
+    // End of variables declaration//GEN-END:variables
 }

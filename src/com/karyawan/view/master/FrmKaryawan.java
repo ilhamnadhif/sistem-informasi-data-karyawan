@@ -9,21 +9,17 @@ import com.karyawan.util.TabelAksi;
 import com.karyawan.util.TanggalFormat;
 import com.karyawan.util.TanggalPicker;
 import com.karyawan.util.Validasi;
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -43,65 +39,10 @@ public class FrmKaryawan extends javax.swing.JPanel {
     private DefaultTableModel model;
     private List<Karyawan> dataHal = new ArrayList<>(); // data baris halaman aktif
 
-    private JTextField txtCari;
-    private JComboBox<Integer> cmbPageSize;
-    private JTable tblData;
-    private JButton btnFirst;
-    private JButton btnPrev;
-    private JButton btnNext;
-    private JButton btnLast;
-    private JLabel lblHalaman;
-
     public FrmKaryawan() {
-        buildUI();
+        initComponents();
         setupTabel();
         loadData();
-    }
-
-    /** Susun toolbar + tabel + pagination. */
-    private void buildUI() {
-        setLayout(new BorderLayout(0, 8));
-
-        JPanel toolbar = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 4));
-        toolbar.add(new JLabel("Cari:"));
-        txtCari = new JTextField(18);
-        toolbar.add(txtCari);
-        toolbar.add(new JLabel("Tampil:"));
-        cmbPageSize = new JComboBox<>(new Integer[]{10, 25, 50});
-        cmbPageSize.addActionListener(e -> {
-            Integer s = (Integer) cmbPageSize.getSelectedItem();
-            if (s != null) {
-                page.setPageSize(s);
-                loadData();
-            }
-        });
-        toolbar.add(cmbPageSize);
-        JButton btnTambah = new JButton("+ Tambah");
-        btnTambah.addActionListener(e -> bukaDialog(null));
-        toolbar.add(btnTambah);
-        add(toolbar, BorderLayout.NORTH);
-
-        tblData = new JTable();
-        add(new JScrollPane(tblData), BorderLayout.CENTER);
-
-        JPanel pnlPage = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 4));
-        btnFirst = navBtn("«", e -> { page.first(); loadData(); });
-        btnPrev = navBtn("‹", e -> { page.prev(); loadData(); });
-        lblHalaman = new JLabel("Halaman 1 dari 1");
-        btnNext = navBtn("›", e -> { page.next(); loadData(); });
-        btnLast = navBtn("»", e -> { page.last(); loadData(); });
-        pnlPage.add(btnFirst);
-        pnlPage.add(btnPrev);
-        pnlPage.add(lblHalaman);
-        pnlPage.add(btnNext);
-        pnlPage.add(btnLast);
-        add(pnlPage, BorderLayout.SOUTH);
-    }
-
-    private JButton navBtn(String teks, java.awt.event.ActionListener act) {
-        JButton b = new JButton(teks);
-        b.addActionListener(act);
-        return b;
     }
 
     /** Siapkan model tabel + kolom Aksi + listener pencarian. */
@@ -126,7 +67,7 @@ public class FrmKaryawan extends javax.swing.JPanel {
             public void removeUpdate(DocumentEvent e) { page.reset(); loadData(); }
             public void changedUpdate(DocumentEvent e) { page.reset(); loadData(); }
         });
-        cmbPageSize.setSelectedItem(page.getPageSize());
+        cmbPageSize.setSelectedItem(String.valueOf(page.getPageSize()));
     }
 
     /** Sembunyikan kolom tabel berdasarkan index. */
@@ -357,4 +298,165 @@ public class FrmKaryawan extends javax.swing.JPanel {
     private void pesanError(String m) {
         JOptionPane.showMessageDialog(this, m, "Error", JOptionPane.ERROR_MESSAGE);
     }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        pnlToolbar = new javax.swing.JPanel();
+        lblCari = new javax.swing.JLabel();
+        txtCari = new javax.swing.JTextField();
+        lblTampil = new javax.swing.JLabel();
+        cmbPageSize = new javax.swing.JComboBox<>();
+        btnTambah = new javax.swing.JButton();
+        scrollData = new javax.swing.JScrollPane();
+        tblData = new javax.swing.JTable();
+        pnlPage = new javax.swing.JPanel();
+        btnFirst = new javax.swing.JButton();
+        btnPrev = new javax.swing.JButton();
+        lblHalaman = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
+
+        pnlToolbar.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 4));
+
+        lblCari.setText("Cari:");
+        pnlToolbar.add(lblCari);
+
+        txtCari.setColumns(18);
+        pnlToolbar.add(txtCari);
+
+        lblTampil.setText("Tampil:");
+        pnlToolbar.add(lblTampil);
+
+        cmbPageSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "25", "50" }));
+        cmbPageSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPageSizeActionPerformed(evt);
+            }
+        });
+        pnlToolbar.add(cmbPageSize);
+
+        btnTambah.setText("+ Tambah");
+        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahActionPerformed(evt);
+            }
+        });
+        pnlToolbar.add(btnTambah);
+
+        tblData.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        scrollData.setViewportView(tblData);
+
+        pnlPage.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 6, 4));
+
+        btnFirst.setText("«");
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
+        pnlPage.add(btnFirst);
+
+        btnPrev.setText("‹");
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevActionPerformed(evt);
+            }
+        });
+        pnlPage.add(btnPrev);
+
+        lblHalaman.setText("Halaman 1 dari 1");
+        pnlPage.add(lblHalaman);
+
+        btnNext.setText("›");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+        pnlPage.add(btnNext);
+
+        btnLast.setText("»");
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastActionPerformed(evt);
+            }
+        });
+        pnlPage.add(btnLast);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(scrollData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollData, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbPageSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPageSizeActionPerformed
+        Object s = cmbPageSize.getSelectedItem();
+        if (s != null) {
+            page.setPageSize(Integer.parseInt(s.toString()));
+            loadData();
+        }
+    }//GEN-LAST:event_cmbPageSizeActionPerformed
+
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        bukaDialog(null);
+    }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        page.first();
+        loadData();
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+        page.prev();
+        loadData();
+    }//GEN-LAST:event_btnPrevActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        page.next();
+        loadData();
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        page.last();
+        loadData();
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrev;
+    private javax.swing.JButton btnTambah;
+    private javax.swing.JComboBox<String> cmbPageSize;
+    private javax.swing.JLabel lblCari;
+    private javax.swing.JLabel lblHalaman;
+    private javax.swing.JLabel lblTampil;
+    private javax.swing.JPanel pnlPage;
+    private javax.swing.JPanel pnlToolbar;
+    private javax.swing.JScrollPane scrollData;
+    private javax.swing.JTable tblData;
+    private javax.swing.JTextField txtCari;
+    // End of variables declaration//GEN-END:variables
 }

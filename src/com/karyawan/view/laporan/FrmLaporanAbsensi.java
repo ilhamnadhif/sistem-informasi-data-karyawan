@@ -4,6 +4,7 @@ import com.karyawan.dao.KaryawanDAO;
 import com.karyawan.model.Karyawan;
 import com.karyawan.report.JasperHelper;
 import com.karyawan.report.PreviewHelper;
+import com.karyawan.util.TanggalPicker;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,8 +18,15 @@ public class FrmLaporanAbsensi extends javax.swing.JPanel {
 
     private static final String RESOURCE = "laporan_absensi";
 
+    // date picker custom, ditambah runtime ke placeholder panel (bukan di .form
+    // agar GUI Builder tidak gagal memuat bean custom saat design-time)
+    private final TanggalPicker txtTglMulai = new TanggalPicker();
+    private final TanggalPicker txtTglSelesai = new TanggalPicker();
+
     public FrmLaporanAbsensi() {
         initComponents();
+        pnlTglMulai.add(txtTglMulai, java.awt.BorderLayout.CENTER);
+        pnlTglSelesai.add(txtTglSelesai, java.awt.BorderLayout.CENTER);
         setupCombo();
     }
 
@@ -66,14 +74,14 @@ public class FrmLaporanAbsensi extends javax.swing.JPanel {
         return params;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlFilter = new javax.swing.JPanel();
         lblTglMulai = new javax.swing.JLabel();
-        txtTglMulai = new com.karyawan.util.TanggalPicker();
+        pnlTglMulai = new javax.swing.JPanel();
         lblTglSelesai = new javax.swing.JLabel();
-        txtTglSelesai = new com.karyawan.util.TanggalPicker();
+        pnlTglSelesai = new javax.swing.JPanel();
         lblKaryawan = new javax.swing.JLabel();
         cmbKaryawan = new javax.swing.JComboBox<>();
         pnlButton = new javax.swing.JPanel();
@@ -86,7 +94,13 @@ public class FrmLaporanAbsensi extends javax.swing.JPanel {
 
         lblTglMulai.setText("Tanggal Mulai");
 
+        pnlTglMulai.setPreferredSize(new java.awt.Dimension(200, 28));
+        pnlTglMulai.setLayout(new java.awt.BorderLayout());
+
         lblTglSelesai.setText("Tanggal Selesai");
+
+        pnlTglSelesai.setPreferredSize(new java.awt.Dimension(200, 28));
+        pnlTglSelesai.setLayout(new java.awt.BorderLayout());
 
         lblKaryawan.setText("Karyawan");
 
@@ -103,8 +117,8 @@ public class FrmLaporanAbsensi extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(pnlFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cmbKaryawan, 0, 280, Short.MAX_VALUE)
-                    .addComponent(txtTglMulai)
-                    .addComponent(txtTglSelesai))
+                    .addComponent(pnlTglMulai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlTglSelesai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlFilterLayout.setVerticalGroup(
@@ -113,11 +127,11 @@ public class FrmLaporanAbsensi extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(pnlFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTglMulai)
-                    .addComponent(txtTglMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlTglMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTglSelesai)
-                    .addComponent(txtTglSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlTglSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblKaryawan)
@@ -163,9 +177,9 @@ public class FrmLaporanAbsensi extends javax.swing.JPanel {
                 .addComponent(scrollPreview, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addContainerGap())
         );
-    }// </editor-fold>
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTampilkanActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnTampilkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilkanActionPerformed
         Map<String, Object> p = buildParams();
         if (p == null) {
             return;
@@ -190,17 +204,17 @@ public class FrmLaporanAbsensi extends javax.swing.JPanel {
                 "Gagal memuat preview: " + ex.getMessage(),
                 "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }//GEN-LAST:event_btnTampilkanActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         Map<String, Object> params = buildParams();
         if (params == null) {
             return;
         }
         JasperHelper.exportPdf(RESOURCE, params, this);
-    }
+    }//GEN-LAST:event_btnExportActionPerformed
 
-    // Variables declaration - do not modify
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnTampilkan;
     private javax.swing.JComboBox<String> cmbKaryawan;
@@ -209,9 +223,9 @@ public class FrmLaporanAbsensi extends javax.swing.JPanel {
     private javax.swing.JLabel lblTglSelesai;
     private javax.swing.JPanel pnlButton;
     private javax.swing.JPanel pnlFilter;
+    private javax.swing.JPanel pnlTglMulai;
+    private javax.swing.JPanel pnlTglSelesai;
     private javax.swing.JScrollPane scrollPreview;
     private javax.swing.JTable tblPreview;
-    private com.karyawan.util.TanggalPicker txtTglMulai;
-    private com.karyawan.util.TanggalPicker txtTglSelesai;
-    // End of variables declaration
+    // End of variables declaration//GEN-END:variables
 }

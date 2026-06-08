@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forms.JPanelFormInfo">
-  <SyntheticProperties>
-    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-  </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -59,8 +56,8 @@
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="cmbStatus" alignment="0" pref="200" max="32767" attributes="0"/>
-                      <Component id="txtTglMulai" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtTglSelesai" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnlTglMulai" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnlTglSelesai" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -72,12 +69,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTglMulai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTglMulai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlTglMulai" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTglSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTglSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlTglSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -95,15 +92,27 @@
             <Property name="text" type="java.lang.String" value="Tanggal Mulai"/>
           </Properties>
         </Component>
-        <Component class="com.karyawan.util.TanggalPicker" name="txtTglMulai">
-        </Component>
+        <Container class="javax.swing.JPanel" name="pnlTglMulai">
+          <Properties>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[200, 28]"/>
+            </Property>
+          </Properties>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+        </Container>
         <Component class="javax.swing.JLabel" name="lblTglSelesai">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tanggal Selesai"/>
           </Properties>
         </Component>
-        <Component class="com.karyawan.util.TanggalPicker" name="txtTglSelesai">
-        </Component>
+        <Container class="javax.swing.JPanel" name="pnlTglSelesai">
+          <Properties>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[200, 28]"/>
+            </Property>
+          </Properties>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+        </Container>
         <Component class="javax.swing.JLabel" name="lblStatus">
           <Properties>
             <Property name="text" type="java.lang.String" value="Status"/>
