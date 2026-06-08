@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="laporan_cuti" pageWidth="595" pageHeight="842" orientation="Portrait"
+              columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              uuid="11111111-0000-0000-0000-000000000003">
+    <parameter name="tgl_mulai" class="java.sql.Date"/>
+    <parameter name="tgl_selesai" class="java.sql.Date"/>
+    <parameter name="status" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[SELECT k.nama, c.jenis_cuti, c.tanggal_mulai, c.tanggal_selesai, c.lama_cuti, c.status, c.alasan
+                 FROM cuti c
+                 JOIN karyawan k ON c.id_karyawan = k.id_karyawan
+                 WHERE c.tanggal_mulai BETWEEN $P{tgl_mulai} AND $P{tgl_selesai}
+                   AND ($P{status} IS NULL OR c.status = $P{status})
+                 ORDER BY c.tanggal_mulai]]>
+    </queryString>
+    <field name="nama" class="java.lang.String"/>
+    <field name="jenis_cuti" class="java.lang.String"/>
+    <field name="tanggal_mulai" class="java.sql.Date"/>
+    <field name="tanggal_selesai" class="java.sql.Date"/>
+    <field name="lama_cuti" class="java.lang.Integer"/>
+    <field name="status" class="java.lang.String"/>
+    <field name="alasan" class="java.lang.String"/>
+    <title>
+        <band height="40">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="30"/>
+                <textElement textAlignment="Center"><font size="16" isBold="true"/></textElement>
+                <text><![CDATA[Laporan Cuti]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="22">
+            <staticText><reportElement x="0" y="0" width="105" height="22"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center"><font isBold="true"/></textElement><text><![CDATA[Nama]]></text></staticText>
+            <staticText><reportElement x="105" y="0" width="70" height="22"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center"><font isBold="true"/></textElement><text><![CDATA[Jenis Cuti]]></text></staticText>
+            <staticText><reportElement x="175" y="0" width="70" height="22"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center"><font isBold="true"/></textElement><text><![CDATA[Tgl Mulai]]></text></staticText>
+            <staticText><reportElement x="245" y="0" width="70" height="22"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center"><font isBold="true"/></textElement><text><![CDATA[Tgl Selesai]]></text></staticText>
+            <staticText><reportElement x="315" y="0" width="50" height="22"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center"><font isBold="true"/></textElement><text><![CDATA[Lama (hari)]]></text></staticText>
+            <staticText><reportElement x="365" y="0" width="60" height="22"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center"><font isBold="true"/></textElement><text><![CDATA[Status]]></text></staticText>
+            <staticText><reportElement x="425" y="0" width="130" height="22"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center"><font isBold="true"/></textElement><text><![CDATA[Alasan]]></text></staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="20">
+            <textField><reportElement x="0" y="0" width="105" height="20"/><box leftPadding="3" rightPadding="3"><pen lineWidth="0.5"/></box><textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression></textField>
+            <textField><reportElement x="105" y="0" width="70" height="20"/><box leftPadding="3" rightPadding="3"><pen lineWidth="0.5"/></box><textElement textAlignment="Center"/><textFieldExpression><![CDATA[$F{jenis_cuti}]]></textFieldExpression></textField>
+            <textField pattern="dd-MM-yyyy"><reportElement x="175" y="0" width="70" height="20"/><box leftPadding="3" rightPadding="3"><pen lineWidth="0.5"/></box><textElement textAlignment="Center"/><textFieldExpression><![CDATA[$F{tanggal_mulai}]]></textFieldExpression></textField>
+            <textField pattern="dd-MM-yyyy"><reportElement x="245" y="0" width="70" height="20"/><box leftPadding="3" rightPadding="3"><pen lineWidth="0.5"/></box><textElement textAlignment="Center"/><textFieldExpression><![CDATA[$F{tanggal_selesai}]]></textFieldExpression></textField>
+            <textField><reportElement x="315" y="0" width="50" height="20"/><box leftPadding="3" rightPadding="3"><pen lineWidth="0.5"/></box><textElement textAlignment="Center"/><textFieldExpression><![CDATA[$F{lama_cuti}]]></textFieldExpression></textField>
+            <textField><reportElement x="365" y="0" width="60" height="20"/><box leftPadding="3" rightPadding="3"><pen lineWidth="0.5"/></box><textElement textAlignment="Center"/><textFieldExpression><![CDATA[$F{status}]]></textFieldExpression></textField>
+            <textField><reportElement x="425" y="0" width="130" height="20"/><box leftPadding="3" rightPadding="3"><pen lineWidth="0.5"/></box><textFieldExpression><![CDATA[$F{alasan}]]></textFieldExpression></textField>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="20">
+            <textField><reportElement x="400" y="0" width="155" height="20"/><textElement textAlignment="Right"/><textFieldExpression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></textFieldExpression></textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band height="120">
+            <textField>
+                <reportElement x="355" y="15" width="200" height="18"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA["Jakarta, " + new java.text.SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id","ID")).format(new java.util.Date())]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="355" y="33" width="200" height="18"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Manager,]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="355" y="95" width="200" height="18"/>
+                <textElement textAlignment="Center"><font isBold="true" isUnderline="true"/></textElement>
+                <text><![CDATA[Depi Sipahutar]]></text>
+            </staticText>
+        </band>
+    </summary>
+</jasperReport>
